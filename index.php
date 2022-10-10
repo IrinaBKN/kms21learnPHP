@@ -51,63 +51,39 @@
 class Person {
 	public $name;
 	public $age;
-	public $gender;
-	public $idCode;
-	public static $id;
-
-
-	private function getCentury(){
-	$num = (int) substr($this -> idCode, 0, 1);
-	return 1700 + ceil($num/2) *100;
-		// switch($num){
-		// 	case 1:
-		// 	case 2:
-		// 		return 1800;
-		// 	case 3:
-		// 	case 4:
-		// 		return 1900;
-		// 	case 5:
-		// 	case 6:
-		// 		return 2000;
-		// }
+	public function __construct($name, $age)
+	{
+		$this -> name = $name;
+		$this -> age = $age;
 	}
 
-	public function birthYear(){
-		return substr($this ->idCode, 1, 2);
+	public function __toString()
+	{
+		return 'Hello ' . $this -> name;
 	}
-	public function getFullYear(){
-		return $this->getCentury() + (int)substr($this->idCode, 1, 2);
-}
-	public static function getId(){ 
-		return self::$id;
+
+	public function __set($name, $value)
+	{
+		var_dump($name,$value);
 	}
-}
-class Client extends Person{
-	public $purchases = [];
-	public function addItem($itemId){
-		$this -> purchases[] = $itemId; 
+	public function __get($name)
+	{
+		var_dump($name);
+		return 'poop color';  
 	}
 }
 
-Person::$id = 2;
+$irina = new Person('Irina', 38);
+$irina -> hairColor = 'blod';
+var_dump($irina);
+// echo $irina ->hairColor;
+// $irina =38; пропадает обьект 
+$name = 'Irina';
+$name2 = $name;
+$name = 'Martin';
+var_dump($name2);
 
-// class Work extends Person {
-// 	public $salary;
-// }
-// class Manager extends Work {
-
-// }
-// $irina = new Client();
-// $irina->name = 'Irina Babkina';
-// $irina -> age = 49;
-// $irina -> gender = 'woman';
-// $irina -> idCode = '47304142227';
-// var_dump($irina);
-// var_dump($irina ->getFullYear());
-// $irina -> addItem(123);
-Person::getId();
-$irina = new Person ();
-$kati = new Person();
-var_dump(Person::$id);
-var_dump(Person::$id);
-var_dump($kati::$id);
+$kati = clone $irina;
+$irina->name = 'Martin';
+var_dump($kati);
+var_dump($irina);
