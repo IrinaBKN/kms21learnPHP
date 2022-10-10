@@ -53,6 +53,9 @@ class Person {
 	public $age;
 	public $gender;
 	public $idCode;
+	public static $id;
+
+
 	private function getCentury(){
 	$num = (int) substr($this -> idCode, 0, 1);
 	return 1700 + ceil($num/2) *100;
@@ -74,7 +77,11 @@ class Person {
 	}
 	public function getFullYear(){
 		return $this->getCentury() + (int)substr($this->idCode, 1, 2);
-}}
+}
+	public static function getId(){ 
+		return self::$id;
+	}
+}
 class Client extends Person{
 	public $purchases = [];
 	public function addItem($itemId){
@@ -82,17 +89,25 @@ class Client extends Person{
 	}
 }
 
-class Work extends Person {
-	public $salary;
-}
-class Manager extends Work {
+Person::$id = 2;
 
-}
-$irina = new Client();
-$irina->name = 'Irina Babkina';
-$irina -> age = 49;
-$irina -> gender = 'woman';
-$irina -> idCode = '47304142227';
-var_dump($irina);
-var_dump($irina ->getFullYear());
-$irina -> addItem(123);
+// class Work extends Person {
+// 	public $salary;
+// }
+// class Manager extends Work {
+
+// }
+// $irina = new Client();
+// $irina->name = 'Irina Babkina';
+// $irina -> age = 49;
+// $irina -> gender = 'woman';
+// $irina -> idCode = '47304142227';
+// var_dump($irina);
+// var_dump($irina ->getFullYear());
+// $irina -> addItem(123);
+Person::getId();
+$irina = new Person ();
+$kati = new Person();
+var_dump(Person::$id);
+var_dump(Person::$id);
+var_dump($kati::$id);
