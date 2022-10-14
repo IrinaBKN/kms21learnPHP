@@ -9,5 +9,5 @@
 </head>
 
 <body>
-	<?php include 'partials /nav.php';?>
+	<?php include 'views/partials/nav.php'; ?>
 	<div class="container">
