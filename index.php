@@ -48,42 +48,63 @@
 // }
 //--------------------------
 //object
-class Person {
-	public $name;
-	public $age;
-	public function __construct($name, $age)
-	{
-		$this -> name = $name;
-		$this -> age = $age;
-	}
+// class Person {
+// 	public $name;
+// 	public $age;
+// 	public function __construct($name, $age)
+// 	{
+// 		$this -> name = $name;
+// 		$this -> age = $age;
+// 	}
 
-	public function __toString()
-	{
-		return 'Hello ' . $this -> name;
-	}
+// 	public function __toString()
+// 	{
+// 		return 'Hello ' . $this -> name;
+// 	}
 
-	public function __set($name, $value)
-	{
-		var_dump($name,$value);
-	}
-	public function __get($name)
-	{
-		var_dump($name);
-		return 'poop color';  
+// 	public function __set($name, $value)
+// 	{
+// 		var_dump($name,$value);
+// 	}
+// 	public function __get($name)
+// 	{
+// 		var_dump($name);
+// 		return 'poop color';  
+// 	}
+// }
+
+// $irina = new Person('Irina', 38);
+// $irina -> hairColor = 'blod';
+// var_dump($irina);
+// // echo $irina ->hairColor;
+// // $irina =38; пропадает обьект 
+// $name = 'Irina';
+// $name2 = $name;
+// $name = 'Martin';
+// var_dump($name2);
+
+// $kati = clone $irina;
+// $irina->name = 'Martin';
+// var_dump($kati);
+// var_dump($irina);
+
+class Person{
+	use HasEyes;
+}
+class Dog{
+	use HasEyes;
+}
+class Fly{
+	use HasEyes;
+}
+trait HasEyes{
+	public $nrOfEyes;
+
+	public function canSeeThings(){
+		return $this ->nrOfEyes>0;
 	}
 }
-
-$irina = new Person('Irina', 38);
-$irina -> hairColor = 'blod';
-var_dump($irina);
-// echo $irina ->hairColor;
-// $irina =38; пропадает обьект 
-$name = 'Irina';
-$name2 = $name;
-$name = 'Martin';
-var_dump($name2);
-
-$kati = clone $irina;
-$irina->name = 'Martin';
-var_dump($kati);
-var_dump($irina);
+$person = new Person();
+$person ->nrOfEyes=2;
+var_dump($person->canSeeThings());
+var_dump($person);
