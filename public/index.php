@@ -1,11 +1,20 @@
 <?php
 
-// require_once 'src/Cat.php';
-spl_autoload_register();
 
-$cat= new Cat();
+spl_autoload_register(function($class){
+	$class = substr($class, strlen('App\\'));
+	require_once "src/$class.php";
+});
+
+use App\Birds\Pidgeon as Bird;
+
+$cat= new App\Cat();
+$dog = new App\Dog();
+$bird =new App\Birds\Pidgeon();
 
 var_dump($cat);
+var_dump($dog);
+var_dump($bird);
 die;
 
 // var_dump($_SERVER);

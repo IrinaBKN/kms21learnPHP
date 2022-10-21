@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
 
-class Cat {
+namespace App;
+class Dog{
 
 }
+
