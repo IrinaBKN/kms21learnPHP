@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Controllers\ArticleController;
 use App\Router;
 
 spl_autoload_register(function($class){
@@ -8,6 +8,7 @@ spl_autoload_register(function($class){
 	require_once "src/$class.php";
 });
 
+require 'helpers.php';
 require 'routes.php';
 
 $router = new Router($_SERVER['REQUEST_URI']);
