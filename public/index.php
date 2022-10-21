@@ -1,5 +1,13 @@
 <?php
 
+// require_once 'src/Cat.php';
+spl_autoload_register();
+
+$cat= new Cat();
+
+var_dump($cat);
+die;
+
 // var_dump($_SERVER);
 switch($_SERVER['REQUEST_URI']){
 	case '/':
